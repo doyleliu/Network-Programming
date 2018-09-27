@@ -130,9 +130,27 @@ int main(void)
 
 			char * start= NULL;
 			char * end = NULL;
-			start = strstr(buf, "GET"); 
+
+			// memset(buf, '\0', sizeof buf);
+			if(strstr(buf, "GET") == NULL){
+				memset(buf, '\0', sizeof buf);
+				sprintf(buf, "HTTP/1.1 400 Bad Request\r\n\r\n");
+				if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
+        			perror("send");
+        			exit(1);
+    			}
+			}
+			else start = strstr(buf, "GET"); 
 			int startPos = 5;
-			end = strstr(buf, "HTTP");
+			if(strstr(buf, "HTTP") == NULL){
+				memset(buf, '\0', sizeof buf);
+				sprintf(buf, "HTTP/1.1 400 Bad Request\r\n\r\n");
+				if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
+        			perror("send");
+        			exit(1);
+    			}
+			}
+			else end = strstr(buf, "HTTP");
 			end = end - 1;
 			int endPos = (int)(end-start);  
 			char fileName[endPos - startPos + 1];
@@ -143,6 +161,7 @@ int main(void)
 			FILE *fp;
 			fp = fopen(fileName, "r+");
 			memset(buf, '\0', sizeof buf);
+			
 			if(fp == 0){
 				sprintf(buf, "HTTP/1.1 404 Not Found\r\n\r\n");
 				if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
