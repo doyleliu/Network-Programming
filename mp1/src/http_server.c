@@ -35,7 +35,7 @@ void *get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
 	struct addrinfo hints, *servinfo, *p;
@@ -50,12 +50,24 @@ int main(void)
     char buf[MAXDATASIZE];
     int numbytes;
 
+	if(argc != 2){
+        fprintf(stderr, "usage: server portname\n");
+        exit(1);
+    }
+
+	// int port = 0;
+	// for(int i = 0; i < strlen(argv[1]); i ++){
+	// 	port = port * 10 + (argv[1][i]-'0');
+	// }
+	char * port = argv[1];
+	printf("server port %s: waiting for connections...\n", port);
+
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE; // use my IP
 
-	if ((rv = getaddrinfo(NULL, PORT, &hints, &servinfo)) != 0) {
+	if ((rv = getaddrinfo(NULL, port, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		return 1;
 	}
@@ -126,7 +138,7 @@ int main(void)
                 exit(1);
             }
             buf[numbytes] = '\0';
-            printf("The buf is %s", buf);
+            printf("%s", buf);
 
 			char * start= NULL;
 			char * end = NULL;
@@ -156,7 +168,7 @@ int main(void)
 			char fileName[endPos - startPos + 1];
 			strncpy(fileName, buf+startPos, endPos - startPos);
 			fileName[endPos - startPos] = '\0';
-			printf("The file is %s", fileName);
+			// printf("The file is %s", fileName);
 
 			FILE *fp;
 			fp = fopen(fileName, "r+");
