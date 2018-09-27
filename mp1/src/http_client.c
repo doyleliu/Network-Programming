@@ -11,7 +11,7 @@
 #include <arpa/inet.h>
 
 
-#define MAXDATASIZE 100
+#define MAXDATASIZE 50000
 #define PORT "80"
 #define FileNameSize 100
 
@@ -96,10 +96,10 @@ int main(int argc, char *argv[]){
 
     //set our http get file
     memset(buf, '\0', sizeof buf);
-    sprintf(buf, "GET %s HTTP/1.1\r\n", fileName);
+    sprintf(buf, "GET /%s HTTP/1.1\r\n", fileName);
     sprintf(buf+strlen(buf), "User-Agent:  Wget/1.12 (linux-gnu)\r\n");
     sprintf(buf+strlen(buf), "Host:  %s:%s\r\n", ipAddr, port);
-    sprintf(buf+strlen(buf), "Connection:  Keep-Alive\r\n");
+    sprintf(buf+strlen(buf), "Connection:  Keep-Alive\r\n\r\n");
 
     if((numbytes = send(sockfd, buf, strlen(buf), 0)) == -1){
         perror("send");

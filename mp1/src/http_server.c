@@ -18,7 +18,7 @@
 #define PORT "3490"  // the port users will be connecting to
 
 #define BACKLOG 10	 // how many pending connections queue will hold
-#define MAXDATASIZE 1000
+#define MAXDATASIZE 50000
 
 void sigchld_handler(int s)
 {
@@ -126,11 +126,49 @@ int main(void)
                 exit(1);
             }
             buf[numbytes] = '\0';
-            // printf("The file is %s", buf);
-            
+            printf("The buf is %s", buf);
 
-			// if (send(new_fd, "Hello, world!", 13, 0) == -1)
-			// 	perror("send");
+			char * start= NULL;
+			char * end = NULL;
+			start = strstr(buf, "GET"); 
+			int startPos = 5;
+			end = strstr(buf, "HTTP");
+			end = end - 1;
+			int endPos = (int)(end-start);  
+			char fileName[endPos - startPos + 1];
+			strncpy(fileName, buf+startPos, endPos - startPos);
+			fileName[endPos - startPos] = '\0';
+			printf("The file is %s", fileName);
+
+			FILE *fp;
+			fp = fopen(fileName, "r+");
+			memset(buf, '\0', sizeof buf);
+			if(fp == 0){
+				sprintf(buf, "HTTP/1.1 404 Not Found\r\n\r\n");
+				if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
+        			perror("send");
+        			exit(1);
+    			}
+				perror("whoops, file not found!");
+				exit(1);
+			}
+
+			sprintf(buf, "HTTP/1.1 200 OK\r\n\r\n");
+			if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
+        		perror("send");
+        		exit(1);
+    		}
+			memset(buf, '\0', sizeof buf);
+			
+			while((numbytes = fread(buf, sizeof(char), 1024, fp))!= 0){
+				if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
+					perror("send");
+        			exit(1);
+				}
+				memset(buf, '\0', sizeof buf);
+			}
+
+			fclose(fp);
 			close(new_fd);
 			exit(0);
 		}
