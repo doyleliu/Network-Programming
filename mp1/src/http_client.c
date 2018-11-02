@@ -11,9 +11,9 @@
 #include <arpa/inet.h>
 
 
-#define MAXDATASIZE 50000
+#define MAXDATASIZE 5000
 #define PORT "80"
-#define FileNameSize 100
+#define FileNameSize 1000
 
 void *get_in_addr(struct sockaddr *sa){
     if(sa->sa_family == AF_INET){
@@ -56,11 +56,11 @@ int main(int argc, char *argv[]){
 
     }
     if(pos > 0) fileName[pos-1] = '\0';
-    printf("The divided input3 is %s\n", fileName);
+    // printf("The divided input3 is %s\n", fileName);
     char * ipAddr = strtok(ipAddrwithPort, ":");
-    printf("The divided ip address is %s\n", ipAddr);
+    // printf("The divided ip address is %s\n", ipAddr);
     char * port = strtok(NULL,"\0");
-    printf("The divided port is %s\n", port);
+    // printf("The divided port is %s\n", port);
     if(port == NULL || strlen(port) <= 0) port = PORT;
     //  printf("The port is %s\n", port);
 
@@ -107,8 +107,26 @@ int main(int argc, char *argv[]){
     }
 
     FILE *fp;
-    fp = fopen("output", "w+");
+    fp = fopen("output", "wb");
     memset(buf, '\0', sizeof buf);
+
+    // remove protocal lines
+
+    if((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1){
+        perror("recv");
+        exit(1);
+    }
+    char * tmp = strstr(buf, "\r\n\r\n");
+    if(tmp != buf){
+        int prevsize = (int) (tmp - buf);
+        fwrite(buf + prevsize + 4, sizeof(char), numbytes - prevsize - 4 , fp);
+
+    }
+    else fwrite(buf, sizeof(char), numbytes, fp);
+    memset(buf, '\0', sizeof buf);
+
+
+
     while(numbytes != 0){
         if((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1){
             perror("recv");

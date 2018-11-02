@@ -18,7 +18,6 @@
 #define PORT "3490"  // the port users will be connecting to
 
 #define BACKLOG 10	 // how many pending connections queue will hold
-#define MAXDATASIZE 50000
 
 void sigchld_handler(int s)
 {
@@ -35,7 +34,7 @@ void *get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-int main(int argc, char *argv[])
+int main(void)
 {
 	int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
 	struct addrinfo hints, *servinfo, *p;
@@ -46,28 +45,12 @@ int main(int argc, char *argv[])
 	char s[INET6_ADDRSTRLEN];
 	int rv;
 
-    //buf declaration
-    char buf[MAXDATASIZE];
-    int numbytes;
-
-	if(argc != 2){
-        fprintf(stderr, "usage: server portname\n");
-        exit(1);
-    }
-
-	// int port = 0;
-	// for(int i = 0; i < strlen(argv[1]); i ++){
-	// 	port = port * 10 + (argv[1][i]-'0');
-	// }
-	char * port = argv[1];
-	printf("server port %s: waiting for connections...\n", port);
-
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE; // use my IP
 
-	if ((rv = getaddrinfo(NULL, port, &hints, &servinfo)) != 0) {
+	if ((rv = getaddrinfo(NULL, PORT, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		return 1;
 	}
@@ -132,75 +115,8 @@ int main(int argc, char *argv[])
 
 		if (!fork()) { // this is the child process
 			close(sockfd); // child doesn't need the listener
-
-            if((numbytes = recv(new_fd, buf, MAXDATASIZE-1, 0)) == -1){
-                perror("recv");
-                exit(1);
-            }
-            buf[numbytes] = '\0';
-            // printf("%s", buf);
-
-			char * start= NULL;
-			char * end = NULL;
-
-			// memset(buf, '\0', sizeof buf);
-			if(strstr(buf, "GET") == NULL){
-				memset(buf, '\0', sizeof buf);
-				sprintf(buf, "HTTP/1.1 400 Bad Request\r\n\r\n");
-				if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
-        			perror("send");
-        			exit(1);
-    			}
-			}
-			else start = strstr(buf, "GET"); 
-			int startPos = 5;
-			if(strstr(buf, "HTTP") == NULL){
-				memset(buf, '\0', sizeof buf);
-				sprintf(buf, "HTTP/1.1 400 Bad Request\r\n\r\n");
-				if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
-        			perror("send");
-        			exit(1);
-    			}
-			}
-			else end = strstr(buf, "HTTP");
-			end = end - 1;
-			int endPos = (int)(end-start);  
-			char fileName[endPos - startPos + 1];
-			strncpy(fileName, buf+startPos, endPos - startPos);
-			fileName[endPos - startPos] = '\0';
-			// printf("The file is here");
-			printf("The file is %s", fileName);
-
-			FILE *fp;
-			fp = fopen(fileName, "rb");
-			memset(buf, '\0', sizeof buf);
-			
-			if(fp == 0){
-				sprintf(buf, "HTTP/1.1 404 Not Found\r\n\r\n");
-				if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
-        			perror("send");
-        			exit(1);
-    			}
-				perror("whoops, file not found!");
-				exit(1);
-			}
-
-			sprintf(buf, "HTTP/1.1 200 OK\r\n\r\n");
-			if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
-        		perror("send");
-        		exit(1);
-    		}
-			memset(buf, '\0', sizeof buf);
-			
-			while((numbytes = fread(buf, sizeof(char), 1024, fp))!= 0){
-				if((numbytes = send(new_fd, buf, strlen(buf), 0)) == -1){
-					perror("send");
-        			exit(1);
-				}
-				memset(buf, '\0', sizeof buf);
-			}
-
-			fclose(fp);
+			if (send(new_fd, "Hello, world!", 13, 0) == -1)
+				perror("send");
 			close(new_fd);
 			exit(0);
 		}
