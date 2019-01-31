@@ -1,0 +1,426 @@
+1 1 0
+2 6 5
+3 6 8
+4 4 1
+5 4 2
+6 6 3
+7 7 10
+8 8 1
+
+1 6 5
+2 2 0
+3 3 3
+4 5 5
+5 5 4
+6 6 2
+7 6 15
+8 8 4
+
+1 2 8
+2 2 3
+3 3 0
+4 2 8
+5 2 7
+6 2 5
+7 2 18
+8 2 7
+
+1 1 1
+2 5 5
+3 5 8
+4 4 0
+5 5 1
+6 1 4
+7 1 11
+8 1 2
+
+1 4 2
+2 2 4
+3 2 7
+4 4 1
+5 5 0
+6 4 5
+7 4 12
+8 4 3
+
+1 1 3
+2 2 2
+3 2 5
+4 1 4
+5 1 5
+6 6 0
+7 1 13
+8 1 4
+
+1 1 10
+2 1 15
+3 1 18
+4 1 11
+5 1 12
+6 1 13
+7 7 0
+8 1 11
+
+1 1 1
+2 2 4
+3 2 7
+4 1 2
+5 1 3
+6 1 4
+7 1 11
+8 8 0
+
+from 2 to 1 cost 5 hops 2 6 message here is a message from 2 to 1
+from 3 to 5 cost 7 hops 3 2 message this one gets sent from 3 to 5!
+from 4 to 7 cost 11 hops 4 1 message from 4 to 7
+from 2 to 5 cost 4 hops 2 message this is message form 2 to 5!          
+from 4 to 5 cost 1 hops 4 message from 4 to 5        
+
+1 1 0
+2 4 2
+3 4 5
+4 4 1
+5 4 2
+6 6 3
+7 7 10
+8 8 1
+
+1 4 2
+2 2 0
+3 3 3
+4 4 1
+5 4 2
+6 6 2
+7 4 12
+8 4 3
+
+1 2 5
+2 2 3
+3 3 0
+4 2 4
+5 2 5
+6 2 5
+7 2 15
+8 2 6
+
+1 1 1
+2 2 1
+3 2 4
+4 4 0
+5 5 1
+6 2 3
+7 1 11
+8 1 2
+
+1 4 2
+2 4 2
+3 4 5
+4 4 1
+5 5 0
+6 4 4
+7 4 12
+8 4 3
+
+1 1 3
+2 2 2
+3 2 5
+4 2 3
+5 2 4
+6 6 0
+7 1 13
+8 1 4
+
+1 1 10
+2 1 12
+3 1 15
+4 1 11
+5 1 12
+6 1 13
+7 7 0
+8 1 11
+
+1 1 1
+2 1 3
+3 1 6
+4 1 2
+5 1 3
+6 1 4
+7 1 11
+8 8 0
+
+from 2 to 1 cost 2 hops 2 4 message here is a message from 2 to 1
+from 3 to 5 cost 5 hops 3 2 4 message this one gets sent from 3 to 5!
+from 4 to 7 cost 11 hops 4 1 message from 4 to 7
+from 2 to 5 cost 2 hops 2 4 message this is message form 2 to 5!          
+from 4 to 5 cost 1 hops 4 message from 4 to 5        
+
+1 1 0
+2 6 5
+3 6 8
+4 4 1
+5 4 2
+6 6 3
+7 7 10
+8 8 1
+
+1 6 5
+2 2 0
+3 3 3
+4 5 5
+5 5 4
+6 6 2
+7 6 15
+8 8 4
+
+1 2 8
+2 2 3
+3 3 0
+4 2 8
+5 2 7
+6 2 5
+7 2 18
+8 2 7
+
+1 1 1
+2 5 5
+3 5 8
+4 4 0
+5 5 1
+6 1 4
+7 1 11
+8 1 2
+
+1 4 2
+2 2 4
+3 2 7
+4 4 1
+5 5 0
+6 4 5
+7 4 12
+8 4 3
+
+1 1 3
+2 2 2
+3 2 5
+4 1 4
+5 1 5
+6 6 0
+7 1 13
+8 1 4
+
+1 1 10
+2 1 15
+3 1 18
+4 1 11
+5 1 12
+6 1 13
+7 7 0
+8 1 11
+
+1 1 1
+2 2 4
+3 2 7
+4 1 2
+5 1 3
+6 1 4
+7 1 11
+8 8 0
+
+from 2 to 1 cost 5 hops 2 6 message here is a message from 2 to 1
+from 3 to 5 cost 7 hops 3 2 message this one gets sent from 3 to 5!
+from 4 to 7 cost 11 hops 4 1 message from 4 to 7
+from 2 to 5 cost 4 hops 2 message this is message form 2 to 5!          
+from 4 to 5 cost 1 hops 4 message from 4 to 5        
+
+1 1 0
+2 6 5
+4 4 1
+5 4 2
+6 6 3
+7 7 10
+8 8 1
+
+1 6 5
+2 2 0
+4 5 5
+5 5 4
+6 6 2
+7 6 15
+8 8 4
+
+3 3 0
+
+1 1 1
+2 5 5
+4 4 0
+5 5 1
+6 1 4
+7 1 11
+8 1 2
+
+1 4 2
+2 2 4
+4 4 1
+5 5 0
+6 4 5
+7 4 12
+8 4 3
+
+1 1 3
+2 2 2
+4 1 4
+5 1 5
+6 6 0
+7 1 13
+8 1 4
+
+1 1 10
+2 1 15
+4 1 11
+5 1 12
+6 1 13
+7 7 0
+8 1 11
+
+1 1 1
+2 2 4
+4 1 2
+5 1 3
+6 1 4
+7 1 11
+8 8 0
+
+from 2 to 1 cost 5 hops 2 6 message here is a message from 2 to 1
+from 3 to 5 cost infinite hops unreachable message this one gets sent from 3 to 5!
+from 4 to 7 cost 11 hops 4 1 message from 4 to 7
+from 2 to 5 cost 4 hops 2 message this is message form 2 to 5!          
+from 4 to 5 cost 1 hops 4 message from 4 to 5        
+
+1 1 0
+2 6 5
+4 4 1
+5 6 9
+6 6 3
+7 7 10
+8 8 1
+
+1 6 5
+2 2 0
+4 6 6
+5 5 4
+6 6 2
+7 6 15
+8 8 4
+
+3 3 0
+
+1 1 1
+2 1 6
+4 4 0
+5 1 10
+6 1 4
+7 1 11
+8 1 2
+
+1 2 9
+2 2 4
+4 2 10
+5 5 0
+6 2 6
+7 2 19
+8 2 8
+
+1 1 3
+2 2 2
+4 1 4
+5 2 6
+6 6 0
+7 1 13
+8 1 4
+
+1 1 10
+2 1 15
+4 1 11
+5 1 19
+6 1 13
+7 7 0
+8 1 11
+
+1 1 1
+2 2 4
+4 1 2
+5 2 8
+6 1 4
+7 1 11
+8 8 0
+
+from 2 to 1 cost 5 hops 2 6 message here is a message from 2 to 1
+from 3 to 5 cost infinite hops unreachable message this one gets sent from 3 to 5!
+from 4 to 7 cost 11 hops 4 1 message from 4 to 7
+from 2 to 5 cost 4 hops 2 message this is message form 2 to 5!          
+from 4 to 5 cost 10 hops 4 1 6 2 message from 4 to 5        
+
+1 1 0
+2 6 5
+4 4 1
+5 4 2
+6 6 3
+7 7 10
+8 8 1
+
+1 6 5
+2 2 0
+4 5 5
+5 5 4
+6 6 2
+7 6 15
+8 8 4
+
+3 3 0
+
+1 1 1
+2 5 5
+4 4 0
+5 5 1
+6 1 4
+7 1 11
+8 1 2
+
+1 4 2
+2 2 4
+4 4 1
+5 5 0
+6 4 5
+7 4 12
+8 4 3
+
+1 1 3
+2 2 2
+4 1 4
+5 1 5
+6 6 0
+7 1 13
+8 1 4
+
+1 1 10
+2 1 15
+4 1 11
+5 1 12
+6 1 13
+7 7 0
+8 1 11
+
+1 1 1
+2 2 4
+4 1 2
+5 1 3
+6 1 4
+7 1 11
+8 8 0
+
+from 2 to 1 cost 5 hops 2 6 message here is a message from 2 to 1
+from 3 to 5 cost infinite hops unreachable message this one gets sent from 3 to 5!
+from 4 to 7 cost 11 hops 4 1 message from 4 to 7
+from 2 to 5 cost 4 hops 2 message this is message form 2 to 5!          
+from 4 to 5 cost 1 hops 4 message from 4 to 5        
+
